@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Sayang ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Quicksand',sans-serif;
+background:linear-gradient(180deg,#ffd6e8,#fff3f8);
+overflow-x:hidden;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.container{
+background:rgba(255,255,255,.7);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:25px;
+max-width:750px;
+text-align:center;
+box-shadow:0 15px 40px rgba(255,105,180,.2);
+animation:fadeIn 1.5s ease;
+position:relative;
+z-index:5;
+}
+
+h1{
+font-family:'Dancing Script',cursive;
+font-size:56px;
+color:#ff4f94;
+margin-bottom:15px;
+}
+
+#typing{
+font-size:19px;
+line-height:1.9;
+white-space:pre-wrap;
+color:#555;
+min-height:320px;
+text-align:left;
+margin-top:25px;
+}
+
+button{
+margin-top:25px;
+padding:15px 32px;
+border:none;
+border-radius:50px;
+background:#ff6fa8;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 8px 20px rgba(255,105,180,.3);
+}
+
+button:hover{
+transform:scale(1.05);
+background:#ff4f94;
+}
+
+.hidden{
+display:none;
+}
+
+.footer{
+margin-top:35px;
+font-family:'Dancing Script';
+font-size:33px;
+color:#ff4f94;
+opacity:0;
+transition:1.5s;
+}
+
+.footer.show{
+opacity:1;
+}
+
+.heart{
+position:fixed;
+bottom:-30px;
+font-size:22px;
+animation:floatHeart linear forwards;
+pointer-events:none;
+z-index:2;
+}
+
+@keyframes floatHeart{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+.petal{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear infinite;
+pointer-events:none;
+opacity:.9;
+z-index:1;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) translateX(80px) rotate(360deg);
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Hi Sayang ❤️</h1>
+
+<button id="startBtn">Open My Heart 🌸</button>
+
+<div id="typing"></div>
+
+<div id="footer" class="footer">
+I love you forever,
+Nivhashini ❤️
+</div>
+
+</div>
+
+<script>
+
+const message=`I hope this little surprise can make your day, even if it's just a tiny bit.
+
+I know you're going through a lot right now, and it hurts seeing you like this.
+
+I wish I could take away all your worries and make everything okay instantly... but until then, I hope this cute little page can make you smile.
+
+Please remember that you don't have to carry everything alone.
+
+No matter what happens...
+No matter how difficult things get...
+No matter how long it takes...
+
+I'm going to be right here beside you.
+
+You're stronger than you think, and I believe in you every single day.
+
+So take everything one step at a time, okay?
+
+I'll be cheering for every small victory and holding your hand through every difficult moment.
+
+I love you so, so much, Nivhashini.
+
+And...
+
+I miss you more than words could ever describe. ❤️
+
+🌸
+
+P.S.
+
+Every little petal falling on this page is a reminder that someone is thinking about you.
+
+That someone...
+
+is me. ❤️`;
+
+const typing=document.getElementById("typing");
+const btn=document.getElementById("startBtn");
+const footer=document.getElementById("footer");
+
+btn.onclick=()=>{
+btn.style.display="none";
+
+let i=0;
+
+function type(){
+if(i<message.length){
+typing.innerHTML+=message.charAt(i);
+i++;
+setTimeout(type,35);
+}else{
+footer.classList.add("show");
+startHearts();
+}
+}
+type();
+};
+
+function createPetal(){
+
+const petal=document.createElement("div");
+
+petal.className="petal";
+petal.innerHTML="🌸";
+
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(6+Math.random()*5)+"s";
+petal.style.fontSize=(18+Math.random()*14)+"px";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+petal.remove();
+},12000);
+
+}
+
+setInterval(createPetal,350);
+
+function startHearts(){
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+const hearts=["❤️","💖","💕","💗"];
+
+heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(5+Math.random()*4)+"s";
+heart.style.fontSize=(18+Math.random()*16)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+
+},450);
+
+}
+
+// Easter Egg
+
+let taps=0;
+
+footer.onclick=()=>{
+
+taps++;
+
+if(taps==5){
+
+alert("❤️ You'll never have to face anything alone anymore.\n\nAs long as I'm here, you'll always have someone beside you.\n\nI love you, sayang. ❤️");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
